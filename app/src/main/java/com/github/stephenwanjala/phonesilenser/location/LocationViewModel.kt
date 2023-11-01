@@ -2,7 +2,6 @@ package com.github.stephenwanjala.phonesilenser.location
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.stephenwanjala.phonesilenser.feature_silense_phone.SilentEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -19,13 +18,13 @@ class SilenceViewModel @Inject constructor() : ViewModel() {
     )
 
 
-    fun onEvent(event: SilentEvent) {
+    fun onEvent(event: LocationEvent) {
         when (event) {
-            is SilentEvent.LocationEnabled -> {
+            is LocationEvent.LocationEnabled -> {
                 locationEnabledState.value = LocationEnabledState(true)
             }
 
-            is SilentEvent.LocationDisabled -> {
+            is LocationEvent.LocationDisabled -> {
                 locationEnabledState.value = LocationEnabledState(false)
             }
         }

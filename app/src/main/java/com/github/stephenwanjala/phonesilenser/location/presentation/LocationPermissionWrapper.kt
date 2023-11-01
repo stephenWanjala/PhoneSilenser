@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.github.stephenwanjala.phonesilenser.location.SilenceViewModel
 import com.github.stephenwanjala.phonesilenser.receivers.LocationProviderChangedReceiver
-import com.github.stephenwanjala.phonesilenser.feature_silense_phone.SilentEvent
+import com.github.stephenwanjala.phonesilenser.location.LocationEvent
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.MultiplePermissionsState
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
@@ -64,7 +64,7 @@ fun LocationPermissionWrapper(
     val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
     val isLocationEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     LaunchedEffect(isLocationEnabled) {
-        viewModel.onEvent(if (isLocationEnabled) SilentEvent.LocationEnabled else SilentEvent.LocationDisabled)
+        viewModel.onEvent(if (isLocationEnabled) LocationEvent.LocationEnabled else LocationEvent.LocationDisabled)
     }
 
     val locationPermissionsState = rememberMultiplePermissionsState(
